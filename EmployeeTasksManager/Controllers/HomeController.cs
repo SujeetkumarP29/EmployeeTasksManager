@@ -74,27 +74,6 @@ namespace EmployeeTasksManager.Controllers
             return RedirectToAction("Login");
         }
 
-        //public async Task<IActionResult> Index(Employee user)
-        //{
-        //    var userId = user.Id;
-        //    if (string.IsNullOrEmpty(userId))
-        //    {
-        //        return RedirectToAction("Login");
-        //    }
-
-        //    List<EmployeeTask> tasks;
-
-        //    if (user.Role == "Admin")
-        //    {
-        //        tasks = _context.EmployeeTasks.ToList();
-        //    }
-        //    else
-        //    {
-        //       tasks = _context.EmployeeTasks.ToList();
-        //    }
-
-        //    return View(tasks);
-        //}
         [Authorize]
         public async Task<IActionResult> Index()
         {
