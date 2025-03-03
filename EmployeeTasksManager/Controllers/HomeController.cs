@@ -96,7 +96,6 @@ namespace EmployeeTasksManager.Controllers
         //    return View(tasks);
         //}
         [Authorize]
-        [Authorize] // ✅ Ensures only authenticated users can access
         public async Task<IActionResult> Index()
         {
 
@@ -115,7 +114,6 @@ namespace EmployeeTasksManager.Controllers
             Console.WriteLine($"🔹 UserId: {userId}");
             Console.WriteLine($"🔹 Role: {userRole}");
 
-            // ✅ Get tasks based on user role
             var tasks = userRole == "Admin"
                 ? _context.EmployeeTasks.Include(e => e.Employee)
                 : _context.EmployeeTasks.Where(t => t.EmployeeId == userId);
@@ -128,6 +126,7 @@ namespace EmployeeTasksManager.Controllers
         public IActionResult Create() => View();
 
         [HttpPost]
+        [Authorize] 
         public async Task<IActionResult> Create(EmployeeTask task)
         {
             task.EmployeeId = _context.Employees.FirstOrDefault().Id;
@@ -136,6 +135,7 @@ namespace EmployeeTasksManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize] // ✅ Ensures only authenticated users can access
         public async Task<IActionResult> Edit(int id)
         {
             var task = await _context.EmployeeTasks.FindAsync(id);
@@ -144,6 +144,7 @@ namespace EmployeeTasksManager.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Edit(EmployeeTask task)
         {
             if (task.DueDate == null || task.DueDate < new DateTime(1753, 1, 1))
@@ -168,6 +169,7 @@ namespace EmployeeTasksManager.Controllers
         }
 
         [HttpPost]
+        [Authorize] 
         public async Task<IActionResult> Delete(int id)
         {
             var task = await _context.EmployeeTasks.FindAsync(id);
