@@ -1,0 +1,52 @@
+﻿@model EmployeeTasksManager.Models.EmployeeTask
+
+
+
+<div style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" /> <!-- Hidden ID field -->
+        <input type="hidden" asp-for="EmployeeId" />
+        <h2 style="text-align: center; margin-bottom: 20px;">Edit Task</h2>
+        <div style="margin-bottom: 12px;">
+            <label for="Title" style="display: block; font-weight: bold;">Title</label>
+            <input asp-for="Title" id="Title" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label for="Description" style="display: block; font-weight: bold;">Description</label>
+            <textarea asp-for="Description" id="Description" rows="3" required
+                      style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label for="DueDate" style="display: block; font-weight: bold;">Due Date</label>
+            <input asp-for="DueDate" id="DueDate" type="date" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label for="Status" style="display: block; font-weight: bold;">Status</label>
+            <select asp-for="Status" id="Status" required
+                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <button type="submit"
+                    style="padding: 10px 15px; background-color: #28a745; color: white;
+                           border: none; border-radius: 5px; cursor: pointer;">
+                💾 Save Changes
+            </button>
+
+            <a asp-action="Index"
+               style="padding: 10px 15px; background-color: #dc3545; color: white;
+                      text-decoration: none; border-radius: 5px;">
+                ❌ Cancel
+            </a>
+        </div>
+    </form>
+</div>
