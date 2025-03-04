@@ -100,8 +100,6 @@ namespace EmployeeTasksManager.Controllers
             return View(await tasks.ToListAsync());
         }
 
-
-
         public IActionResult Create() => View();
 
         [HttpPost]
@@ -114,7 +112,7 @@ namespace EmployeeTasksManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize] // ✅ Ensures only authenticated users can access
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var task = await _context.EmployeeTasks.FindAsync(id);

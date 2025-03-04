@@ -4,24 +4,27 @@
     <script src="~/lib/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 
-<form asp-action="Login" method="post" style="max-width: 300px; margin: auto; text-align: left;">
-    <h2>Login</h2>
-    <div style="margin-bottom: 10px;">
-        <label for="Email" style="display: block; font-weight: bold;">Email</label>
-        <input asp-for="Email" id="Email" type="email" required
-               style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-    </div>
+<div style="display: flex; justify-content: center; align-items: center; height: 84vh; background: url('/tasksbg.jpg') no-repeat center center/cover;">
+    <form asp-action="Login" method="post" style="max-width: 300px; padding: 20px; background: rgba(255, 255, 255, 0.8); border-radius: 10px; text-align: left;">
+        <h2 style="text-align: center;">Login</h2>
+        <div style="margin-bottom: 10px;">
+            <label for="Email" style="display: block; font-weight: bold;">Email</label>
+            <input asp-for="Email" id="Email" type="email" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
 
-    <div style="margin-bottom: 10px;">
-        <label for="Password" style="display: block; font-weight: bold;">Password</label>
-        <input asp-for="Password" id="Password" type="password" required
-               style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-    </div>
+        <div style="margin-bottom: 10px;">
+            <label for="Password" style="display: block; font-weight: bold;">Password</label>
+            <input asp-for="Password" id="Password" type="password" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
 
-    <button type="submit"
-            style="width: 100%; padding: 10px; background-color: #007bff; color: white;
-                   border: none; border-radius: 5px; cursor: pointer;">
-        Login
-    </button>
-</form>
+        <button type="submit"
+                style="width: 100%; padding: 10px; background-color: #007bff; color: white;
+                       border: none; border-radius: 5px; cursor: pointer;">
+            Login
+        </button>
+    </form>
+</div>
+
 
