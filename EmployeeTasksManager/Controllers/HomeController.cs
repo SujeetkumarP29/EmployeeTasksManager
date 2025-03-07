@@ -94,13 +94,35 @@ namespace EmployeeTasksManager.Controllers
             Console.WriteLine($"🔹 Role: {userRole}");
 
             var tasks = userRole == "Admin"
-                ? _context.EmployeeTasks.Include(e => e.Employee)
-                : _context.EmployeeTasks.Where(t => t.EmployeeId == userId);
+        ? _context.EmployeeTasks
+        : _context.EmployeeTasks.Where(t => t.EmployeeId == userId);
 
+            var taskList = await tasks
+                .Select(t => new EmployeeTask
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Status = t.Status,
+                    DueDate = t.DueDate
+                })
+                .ToListAsync();
             return View(await tasks.ToListAsync());
         }
 
         public IActionResult Create() => View();
+
+        //[HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var task = await _context.EmployeeTasks.FindAsync(id);
+            if (task != null)
+            {
+                _context.EmployeeTasks.Remove(task);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
         [HttpPost]
         [Authorize] 
@@ -111,7 +133,7 @@ namespace EmployeeTasksManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        //[HttpPost]
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
@@ -145,17 +167,5 @@ namespace EmployeeTasksManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        [Authorize] 
-        public async Task<IActionResult> Delete(int id)
-        {
-            var task = await _context.EmployeeTasks.FindAsync(id);
-            if (task != null)
-            {
-                _context.EmployeeTasks.Remove(task);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Index));
-        }
     }
 }

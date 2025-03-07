@@ -30,6 +30,11 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromHours(1);  // Session expiration
     options.SlidingExpiration = true;  // Extends session on user activity
 });
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.MaxDepth = 64; // Increase depth if needed
+});
 
 builder.Services.AddAuthorization();
 

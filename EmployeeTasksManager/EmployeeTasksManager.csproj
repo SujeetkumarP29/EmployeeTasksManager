@@ -18,6 +18,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
     <PackageReference Include="MimeKit" Version="4.10.0" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="28.2.9" />
+    <PackageReference Include="Syncfusion.EJ2.JavaScript" Version="28.2.9" />
   </ItemGroup>
 
 </Project>
